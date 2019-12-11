@@ -1,0 +1,53 @@
+<?page title="Auto Generated index.zul"?>
+<?init class="org.zkoss.zkplus.databind.AnnotateDataBinderInit"?>
+<window title="People's App" border="normal" width="100%">
+
+<label value="You are using: ${desktop.webApp.version}"/>
+	<div id="peoplediv" apply="vm.PeopleController" hflex="true">
+		<listbox id="lstPeople" multiple="true" rows="5"
+	      model="@{peoplediv$composer.getPeopleModel, load-after='btnAddPerson.onClick, btnDeletePerson.onClick'}"
+	      selectedItem="@{peoplediv$composer.currentPerson}">
+	      <auxhead>
+	        <auxheader label="People" colspan="4" />
+	      </auxhead>
+	      <listhead>
+	        <listheader label="First Name" hflex="3" />
+	        <listheader label="Middle Name" hflex="3" />
+	        <listheader label="Last Name" hflex="3" />
+	        <listheader label="Email" hflex="3" />
+	        <listheader label="Birth Date" hflex="1" />
+	      </listhead>
+	      <listitem self="@{each='person'}" value="@{people}">
+	        <listcell label="@{person.firstName}" />
+	        <listcell label="@{person.middleName}" />
+	        <listcell label="@{person.lastName}" />
+	        <listcell label="@{person.email}" />
+	        <listcell label="@{person.birthDate}" />
+	      </listitem>
+	    </listbox>
+	    <groupbox>
+	    <caption label="New person"/>
+		User Name:
+		<textbox id="txtUserName" cols="25"
+		  value="@{peoplediv$composer.currentPerson.userName save-when='btnUpdatePerson.onClick'}" placeholder="Username" />
+		Email:
+		<textbox id="txtEmail" cols="1"
+		  value="@{peoplediv$composer.currentPerson.email save-when='btnUpdatePerson.onClick'}" placeholder="Email" />
+		First Name:
+		<textbox id="txtFirstName" cols="25"
+		  value="@{peoplediv$composer.currentPerson.firstName save-when='btnUpdatePerson.onClick'}" placeholder="First name" />
+		Middle Name:
+		<textbox id="txtMiddleName" cols="25"
+		  value="@{peoplediv$composer.currentPerson.middleName save-when='btnUpdatePerson.onClick'}" placeholder="Middle name" />
+		Last Name:
+		<textbox id="txtLastName" cols="25"
+		  value="@{peoplediv$composer.currentPerson.lastName save-when='btnUpdatePerson.onClick'}" placeholder="Last name" />
+		Birthdate:
+		<textbox id="txtBirthDate" cols="25"
+		  value="@{peoplediv$composer.currentPerson.birthDate save-when='btnUpdatePerson.onClick'}" placeholder="Birthdate" />
+		  <button id="btnAddPerson" label="Add" width="100px"></button>
+		  <button id="btnUpdatePerson" label="Update" width="100px"></button>
+		  <button id="btnDeletePerson" label="Delete" width="100px"></button>
+		  </groupbox>
+    </div>
+</window>
